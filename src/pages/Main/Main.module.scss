@@ -1,0 +1,11 @@
+.filmsList {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    max-width: 1440px;
+    gap: 20px;
+
+    .filmsItem {
+        flex: 1 1 22%;
+    }
+}

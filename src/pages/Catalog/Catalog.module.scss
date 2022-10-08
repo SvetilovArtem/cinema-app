@@ -1,0 +1,107 @@
+.wrapper {
+
+    .form {
+        margin-bottom: 20px;
+    }
+
+    .title {
+        font-weight: 300;
+        margin-bottom: 20px;
+    }
+    .searchInput {
+        border: none;
+        outline: none;
+        background: rgba($color: #ffffff, $alpha: 0.4);
+        border: 1px solid black;
+        border-radius: 20px;
+        padding: 20px;
+        margin-right: 20px;
+        font-size: 24px;
+        font-weight: 300;
+             
+        &::placeholder {
+            color: #a3a3a3;
+            font-size: 24px;
+            font-weight: 300;
+        }
+    }
+    .input {
+        border: none;
+        outline: none;
+        background: rgba($color: #ffffff, $alpha: 0.4);
+        border: 1px solid black;
+        border-radius: 20px;
+        padding: 10px;
+        margin-right: 20px;
+        margin-bottom: 20px;
+             
+        &::placeholder {
+            color: #a3a3a3;
+            font-size: 16px;
+        }
+    }
+    
+    .button {
+        color: #000000;
+        border: none;
+        outline: none;
+        background: rgba($color: #ffffff, $alpha: 0.4);
+        border: 1px solid black;
+        border-radius: 20px;
+        padding: 30px 20px;
+        margin-bottom: 20px;
+        transition: all .2s ease;
+        font-size: 20px;
+        cursor: pointer;
+        &:hover {
+            background: rgba($color: #ffffff, $alpha: 1);  
+        }
+    }
+    .withFiltersButton {
+        &:hover {
+            background-color: rgba(235, 143, 5, 1);
+        }
+    }
+    .films {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+        gap: 30px;
+        .film {
+            width: 18%;
+            height: 100%;
+            transition: all .3s ease;
+            &:hover {
+                transform: translateY(-12px);
+                box-shadow: 0 17px 9px -9px rgba(0, 0, 0, .5);
+            }
+        }
+    }
+    .filters {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        flex-wrap: wrap;
+        padding: 30px 30px 10px 30px;
+        background: rgba($color: #ffffff, $alpha: 0.4);
+        border: 1px solid black;
+        border-radius: 20px;
+        max-width: 60%;
+        max-width: 100%;
+        margin-bottom: 65px;
+        .filtersGroup {
+            display: flex;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 15px;
+        }
+        .inputGroup {
+            margin-right: 20px;
+            display: flex;
+            align-items: center;
+        }
+    }
+}
+ul {
+    list-style-type: none;
+}

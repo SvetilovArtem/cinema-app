@@ -1,0 +1,41 @@
+.wrapper {
+    padding: 8px;
+    border: 1px solid black;
+    border-radius: 15px;
+    background-color: rgba($color: #ffffff, $alpha: 0.4);
+    cursor: pointer;
+    
+    .cardHeader {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        position: relative;
+
+        .title {
+            margin-bottom: 15px;
+            margin-right: 10px;
+            font-size: 26px;
+            color: black;
+        }
+        .rating {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            border-radius: 50%;
+            background-color: #d46617;
+            width: 34px;
+            height: 34px;
+            position: absolute;
+            top: 0;
+            right: 0;
+        }
+    }
+    .img {
+        max-width: 100%;
+    }
+    .year {
+        color: black;
+        font-size: 18px;
+        font-weight: 700;
+    }
+}

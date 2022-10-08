@@ -1,0 +1,24 @@
+.header {
+    padding: 20px;
+    margin-bottom: 30px;
+    .nav {
+        display: flex;
+        justify-content: center;
+        
+        .navItem {
+            transition: transform .2s ease;
+            font-size: 20px;
+            font-weight: 300;
+        }
+        .navItem:not(:last-child) {
+            margin-right: 20px;
+        }
+        .navItem:hover {
+            transform: translateY(-4px);
+        }
+        .navItem a {
+            text-decoration: none;
+            color: rgba($color: #ffffff, $alpha: 1);
+        }
+    }
+}
