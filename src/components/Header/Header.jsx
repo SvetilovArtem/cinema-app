@@ -7,6 +7,7 @@ const Header = () => {
     <header className={styles.header}>
       <nav className={styles.nav}>
         <div className={styles.navItem}><NavLink to={'/'}>Главная</NavLink></div>
+        <div className={styles.navItem}><NavLink to={'/top'}>Лучшее</NavLink></div>
         <div className={styles.navItem}><NavLink to={'/catalog'}>Каталог</NavLink></div>
         <div className={styles.navItem}><NavLink to={'/auth'}>Логин</NavLink></div>
       </nav> 

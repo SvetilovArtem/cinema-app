@@ -2,7 +2,7 @@ import axios from 'axios'
 import React, { useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { setActors, setBudget, setBudgetIsOpen, setFilmObj, setImages, setPosterUrl, setVideo, setVideoIsOpen } from '../../redux/slices/filmInfoSlice'
-import { apiKey } from '../Main/Main'
+import { apiKey } from '../../App'
 import styles from './FilmInfo.module.scss'
 import ReactPlayer from 'react-player'
 
@@ -17,7 +17,7 @@ const FilmInfo = () => {
   const actors = useSelector(state => state.filmInfoReducer.actors)
 
   const video = useSelector(state => state.filmInfoReducer.video)
-  console.log(actors)
+  console.log(choiseFilm)
   console.log(filmObj)
   const dispatch = useDispatch()
 

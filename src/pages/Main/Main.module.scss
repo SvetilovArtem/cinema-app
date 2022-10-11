@@ -2,10 +2,40 @@
     display: flex;
     flex-wrap: wrap;
     justify-content: center;
+    align-items: center;
     max-width: 1440px;
+    height: 700px;
     gap: 20px;
+    margin-bottom: 80px;
+    .sliderBtn {
+        border-radius: 100%;
+        width: 40px;
+        height: 40px;
+        background-color: transparent;
+        cursor: pointer;
+        &:hover {
+            background-color: rgba(235, 143, 5, 1);
+        }
+    }
+    .prev {
+        transform: rotate(-180deg);
+    }
 
     .filmsItem {
         flex: 1 1 22%;
+        transition: transform .3s ease;
+        &:hover {
+            transform: scale(1.1)
+        }
     }
+}
+.main {
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    .title {
+        font-size: 30px;
+        font-weight: 300;
+    }
+
 }

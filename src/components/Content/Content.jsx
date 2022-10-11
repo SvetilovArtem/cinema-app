@@ -4,6 +4,7 @@ import Auth from '../../pages/Auth/Auth'
 import Catalog from '../../pages/Catalog/Catalog'
 import FilmInfo from '../../pages/FilmInfo/FilmInfo'
 import Main from '../../pages/Main/Main'
+import Top from '../../pages/Top/Top'
 import styles from './Content.module.scss'
 
 const Content = () => {
@@ -11,6 +12,7 @@ const Content = () => {
     <div className={styles.content}>
       <Routes>
         <Route path={'/'} element={<Main />} />
+        <Route path={'/top'} element={<Top />} />
         <Route path={'/auth'} element={<Auth />} />
         <Route path={'/catalog'} element={<Catalog />} />
         <Route path={'/filmInfo'} element={<FilmInfo />} />

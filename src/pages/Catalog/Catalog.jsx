@@ -1,12 +1,12 @@
 import axios from 'axios'
 import React, { useState } from 'react'
-import { apiKey } from '../Main/Main'
 import styles from './Catalog.module.scss'
 import CardItem from '../../components/CardItem/CardItem'
 import { useDispatch, useSelector } from 'react-redux'
 import { onChangeValue } from '../../redux/slices/catalogSlice'
 import { useEffect } from 'react'
-import { SettingsAccessibilityRounded } from '@mui/icons-material'
+import { apiKey } from '../../App'
+
 
 const Catalog = () => {
 

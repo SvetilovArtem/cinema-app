@@ -5,7 +5,7 @@ import { setChoiseFilm, setSelectFilmName } from '../../redux/slices/catalogSlic
 
 import styles from './CardItem.module.scss'
 
-const CardItem = ({name, year, poster, filmId, rating}) => {
+const CardItem = ({name, year, poster, filmId, rating, yearRel}) => {
   const dispatch = useDispatch()
 
   return (
@@ -27,7 +27,8 @@ const CardItem = ({name, year, poster, filmId, rating}) => {
             }}
             />
             <p className={styles.year}>{year}</p>
-            <p>{filmId}</p>
+            <p className={styles.year}>{yearRel && `Дата релиза: ${yearRel}`}</p>
+            {filmId}
         </div>
     </NavLink>
     

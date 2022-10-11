@@ -16,8 +16,8 @@ const monthes = [
 ]
 
 const initialState = {
-    yearPremiere: 0,
-    monthPremiere: '',
+    yearPremiere: new Date().getFullYear(),
+    monthPremiere: monthes.filter(e => e.id === new Date().getMonth())[0].name,
     premieres: []
 }
 
@@ -25,12 +25,6 @@ export const mainSlice = createSlice({
   name: 'main',
   initialState,
   reducers: {
-    setYearPremiere: (state, action) => {
-        state.yearPremiere = new Date().getFullYear()
-    },
-    setMonthPremiere: (state, action) => {
-        state.monthPremiere = monthes.filter(e => e.id === new Date().getMonth())[0].name
-    },
     setPremieres: (state, action) => {
       state.premieres = action.payload.splice(0, 10)
     }
@@ -38,6 +32,6 @@ export const mainSlice = createSlice({
 })
 
 // Action creators are generated for each case reducer function
-export const { setMonthPremiere, setYearPremiere, setPremieres } = mainSlice.actions
+export const { setPremieres } = mainSlice.actions
 
 export default mainSlice.reducer
