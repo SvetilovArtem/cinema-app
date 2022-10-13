@@ -1,6 +1,7 @@
 .wrapper {
     position: relative;
     display: flex;
+    color: black;
     .media {
         display: flex;
         flex-direction: column;
@@ -34,12 +35,14 @@
             align-items: flex-start;
             .infoItem {
                 display: flex;
+                font-size: 18px;
             }
         } 
     }
     
     .brightText {
         font-weight: 700;
+        font-size: 20px;
         margin-right: 5px;
     }
     .showText {

@@ -1,6 +1,24 @@
+@font-face {
+    font-family: 'jfrocout';
+    src: url('../../../fonts/jfrocout_rus-webfont.woff2') format('woff2'),
+         url('../../../fonts/jfrocout_rus-webfont.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+
+}
 .header {
     padding: 20px;
     margin-bottom: 30px;
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+    
+    .logo {
+        color: #06ed2c;
+        font-family: 'jfrocout';
+        font-size: 32px;
+
+    }
     .nav {
         display: flex;
         justify-content: center;
@@ -9,6 +27,9 @@
             transition: transform .2s ease;
             font-size: 20px;
             font-weight: 300;
+            a:focus {
+                color: rgb(255, 252, 252);
+            }
         }
         .navItem:not(:last-child) {
             margin-right: 20px;
@@ -18,7 +39,9 @@
         }
         .navItem a {
             text-decoration: none;
-            color: rgba($color: #ffffff, $alpha: 1);
+            color: rgba($color: #06ed2c, $alpha: 1);
+            font-style: 20px;
+            letter-spacing: 0.2rem;
         }
     }
 }

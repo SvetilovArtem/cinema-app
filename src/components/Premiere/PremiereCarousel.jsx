@@ -17,7 +17,7 @@ const PremiereCarousel = ({premieres}) => {
 
   return (
       <div className={styles.wrapperBlock} >
-        <Carousel activeIndex={index} onSelect={handleSelect} className={styles.wrapper}>
+        <Carousel interval='10000' activeIndex={index} onSelect={handleSelect} className={styles.wrapper}>
 
           {premieres.map(e => {
             return (
@@ -31,9 +31,9 @@ const PremiereCarousel = ({premieres}) => {
               />
             </NavLink>    
             
-            <Carousel.Caption>
+            <Carousel.Caption className={styles.carouselText}>
               <h3>{e.nameRu}</h3>
-              <p>{e.premiereRu}</p>
+              <p>Премьера состоится {e.premiereRu}</p>
               <p>{e.duration} мин.</p>
             </Carousel.Caption>
           </Carousel.Item>
