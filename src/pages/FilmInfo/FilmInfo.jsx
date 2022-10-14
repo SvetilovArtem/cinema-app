@@ -1,10 +1,11 @@
 import axios from 'axios'
 import React, { useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
-import { setActors, setBudget, setBudgetIsOpen, setFilmObj, setImages, setPosterUrl, setVideo, setVideoIsOpen } from '../../redux/slices/filmInfoSlice'
+import { setActors, setBudget, setBudgetIsOpen, setFilmObj, setImages, setIsShowingActor, setPosterUrl, setVideo, setVideoIsOpen } from '../../redux/slices/filmInfoSlice'
 import { apiKey } from '../../App'
 import styles from './FilmInfo.module.scss'
 import ReactPlayer from 'react-player'
+import Actor from '../../components/Actor/Actor'
 
 const FilmInfo = () => {
   const choiseFilm = useSelector(state => state.catalogReducer.choiseFilm)
@@ -17,12 +18,10 @@ const FilmInfo = () => {
   const actors = useSelector(state => state.filmInfoReducer.actors)
 
   const video = useSelector(state => state.filmInfoReducer.video)
-  console.log(choiseFilm)
+
   console.log(filmObj)
   const dispatch = useDispatch()
 
- 
-  
   useEffect(() => {
 
     axios
@@ -59,7 +58,7 @@ const FilmInfo = () => {
     })
     .then(resp => {
       dispatch(setImages(resp.data.items))
-      console.log(resp)})
+    })
 
       axios
     .get(`https://kinopoiskapiunofficial.tech/api/v1/staff?filmId=${choiseFilm}`, {
@@ -69,7 +68,9 @@ const FilmInfo = () => {
             'Content-Type': 'application/json',
         },
     })
-    .then(resp => dispatch(setActors(resp.data)))
+    .then(resp => {
+      dispatch(setActors(resp.data))
+    console.log(resp)})
   },[])
 
   function showBoxOffice() {
@@ -108,12 +109,16 @@ const FilmInfo = () => {
        
         <div className={styles.infoBlock}>
             <h1>{filmObj.nameRu}</h1>
-          
+            {/* {isShowingActor && <img src={e.posterUrl} alt=''></img>} */}
           <ul className={styles.info}>
             <li className={styles.infoItem}><span className={styles.brightText}>Год производства:</span>{filmObj.year}</li>
             <li className={styles.infoItem}><span className={styles.brightText}>Рейтинг кинопоиска:</span>{filmObj.ratingKinopoisk}</li>
             <li className={styles.infoItem}><span className={styles.brightText}>Описание:</span>{filmObj.description}</li>
-            <li className={styles.infoItem}><span className={styles.brightText}>В ролях:</span>{actors.map(e=><span>{e},</span>)}</li>
+            <li className={styles.infoItem}>
+              <span className={styles.brightText}>В ролях:</span>
+              {actors.map(e => {
+                return <Actor name={e.nameRu} poster={e.posterUrl} />})}
+            </li>
             <li className={styles.infoItem} onClick={showBoxOffice}><span className={styles.brightText + ' ' + styles.showText}>Показать бюджет фильма:</span>{budgetIsOpen ? budget : 'не известен'}</li>
           </ul> 
 

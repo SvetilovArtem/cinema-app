@@ -1,6 +1,6 @@
 import axios from 'axios'
 import React, { useEffect, useState } from 'react'
-import { Form } from 'react-bootstrap'
+import { Form, Spinner } from 'react-bootstrap'
 import { apiKey } from '../../App'
 import CardItem from '../../components/CardItem/CardItem'
 import styles from './Top.module.scss'
@@ -9,6 +9,7 @@ const Top = () => {
     const [cinemas, setCinemas] = useState([])
     const [page, setPage] = useState(1)
     const [pagesCount, setPagesCount] = useState(0)
+    const [isLoading, setIsLoading] = useState(false)
 
     const [select, setSelect] = useState('')
     console.log(pagesCount)
@@ -17,6 +18,7 @@ const Top = () => {
     
 
     useEffect(() => {
+        setIsLoading(true)
         axios
         .get(`https://kinopoiskapiunofficial.tech/api/v2.2/films/top?page=${page}&type=${select}`, {
             method: 'GET',
@@ -28,8 +30,10 @@ const Top = () => {
         .then(resp => {
             setCinemas(resp.data.films)
             setPagesCount(resp.data.pagesCount)
+            setIsLoading(false)
             console.log(resp)
         })
+        
     },[page, select])
   return (
     <div>
@@ -47,31 +51,35 @@ const Top = () => {
             <option>Популярные</option>
             <option>Самые ожидаемые</option>
         </Form.Select>
-        <div className={styles.activePage}>{page + '/' + pagesCount}</div>
-        <div className={styles.btnGroup}>
-            <button className={styles.paginateBtn} onClick={() => setPage(page - 1)} disabled={page < 2 ? true : false}>&#11164;</button>
-            <button className={styles.paginateBtn} onClick={() => setPage(page + 1)} disabled={page === pagesCount ? true : false}>&#11166;</button>
-        </div>
-        <ul className={styles.filmsList}>
-            {cinemas.map(el => {
-                return <li className={styles.filmsItem}>
-                    <CardItem 
-                    rating={el.rating}
-                    poster={el.posterUrlPreview} 
-                    name={el.nameRu}
-                    year={el.year}
-                    filmId={el.filmId}/>
-                    
-                </li>
-            })}
+        {
+            !isLoading ? <>
+            <div className={styles.activePage}>{page + '/' + pagesCount}</div>
+            <div className={styles.btnGroup}>
+                <button className={styles.paginateBtn} onClick={() => setPage(page - 1)} disabled={page < 2 ? true : false}>&#11164;</button>
+                <button className={styles.paginateBtn} onClick={() => setPage(page + 1)} disabled={page === pagesCount ? true : false}>&#11166;</button>
+            </div>
+            <ul className={styles.filmsList}>
+                {cinemas.map(el => {
+                    return <li className={styles.filmsItem}>
+                        <CardItem 
+                        rating={el.rating}
+                        poster={el.posterUrlPreview} 
+                        name={el.nameRu}
+                        year={el.year}
+                        filmId={el.filmId}/>
+                        
+                    </li>
+                })}
+                
+            </ul>
             
-        </ul>
-        
-        <div className={styles.activePage} style={{color: 'black'}}>{page + '/' + pagesCount}</div>
-        <div className={styles.btnGroup}>
-            <button className={styles.paginateBtn+' '+styles.arrowBtn} style={{color: 'black'}} onClick={() => setPage(page - 1)} disabled={page < 2 ? true : false}>&#11164;</button>
-            <button className={styles.paginateBtn+' '+styles.arrowBtn} style={{color: 'black'}} onClick={() => setPage(page + 1)} disabled={page === pagesCount ? true : false}>&#11166;</button>
-        </div>
+            <div className={styles.activePage} style={{color: 'black'}}>{page + '/' + pagesCount}</div>
+            <div className={styles.btnGroup}>
+                <button className={styles.paginateBtn+' '+styles.arrowBtn} style={{color: 'black'}} onClick={() => setPage(page - 1)} disabled={page < 2 ? true : false}>&#11164;</button>
+                <button className={styles.paginateBtn+' '+styles.arrowBtn} style={{color: 'black'}} onClick={() => setPage(page + 1)} disabled={page === pagesCount ? true : false}>&#11166;</button>
+            </div>
+            </> : <Spinner animation="border" variant="danger" />
+        }
         
     </div>
   )

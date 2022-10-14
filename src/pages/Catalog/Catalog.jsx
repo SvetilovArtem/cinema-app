@@ -6,6 +6,7 @@ import { useDispatch, useSelector } from 'react-redux'
 import { onChangeValue } from '../../redux/slices/catalogSlice'
 import { useEffect } from 'react'
 import { apiKey } from '../../App'
+import { Button, Spinner } from 'react-bootstrap'
 
 
 const Catalog = () => {
@@ -27,7 +28,7 @@ const Catalog = () => {
   const [ratingFrom, setRatingFrom] = useState('')
   const [ratingTo, setRatingTo] = useState('')
 
-  
+  const [isLoading, setIsLoading] = useState(false)
 
   useEffect(() => {
     axios
@@ -74,8 +75,7 @@ const Catalog = () => {
     const genreId = genresArr.filter(e => e.genre === genre)[0].id 
     const countriesId = countriesArr.filter(e => e.country.toLowerCase() === country.toLowerCase())[0].id
 
-    console.log(`https://kinopoiskapiunofficial.tech/api/v2.2/films?${(genreId !== 25) ? `genres=${genreId}` : ''}${(countriesId !== 54) ? `&countries=${countriesId}` : ''}${yearFrom && `&yearFrom=${yearFrom}`}${ratingFrom && `&ratingFrom=${ratingFrom}`}${ratingTo && `&ratingTo=${ratingTo}`}${value && `&keyword=${value}`}${yearTo && `&yearTo=${yearTo}&page=${1}`}`)
-   
+    setIsLoading(true)
     axios
     .get(`https://kinopoiskapiunofficial.tech/api/v2.2/films?${(genreId !== 25) ? `genres=${genreId}` : ''}${(countriesId !== 54) ? `&countries=${countriesId}` : ''}${yearFrom && `&yearFrom=${yearFrom}`}${ratingFrom && `&ratingFrom=${ratingFrom}`}${ratingTo && `&ratingTo=${ratingTo}`}${value && `&keyword=${value}`}${yearTo && `&yearTo=${yearTo}&page=${1}`}`, {
         method: 'GET',
@@ -86,6 +86,7 @@ const Catalog = () => {
     })
     .then(resp => {
       setFilmsAfterFilters(resp.data.items)
+      setIsLoading(false)
     })
   }
 
@@ -117,11 +118,20 @@ const Catalog = () => {
             <input type='text' placeholder="Рейтинг до..." className={styles.input} style={{'margin-left': "10px"}} value={ratingTo} onChange={e => onChangeRatingTo(e)} />
           </form>
         </div>
-        <button onClick={onSearchWithFilters} className={styles.button + ' ' + styles.withFiltersButton}>Поиск по фильтрам</button>
-        
+        {
+          isLoading ? <Button variant="primary" className={styles.button + ' ' + styles.withFiltersButton} disabled>
+          <Spinner
+            as="span"
+            animation="grow"
+            size="sm"
+            role="status"
+            aria-hidden="true"
+          />
+          Loading...
+        </Button> : <button onClick={onSearchWithFilters} className={styles.button + ' ' + styles.withFiltersButton}>Поиск по фильтрам</button>
+        }      
       </div>
       
-      {filmsAfterFilters > 0 && <div>Найдено {filmsAfterFilters.length} вариантов</div>}
       <ul className={styles.films}>
         {filmsAfterFilters.map(film => {
           return <li className={styles.film}>
@@ -132,7 +142,6 @@ const Catalog = () => {
             poster={film.posterUrlPreview} 
             filmId={film.kinopoiskId} 
             rating={film.ratingKinopoisk}
-          
           />
         </li>
         })}

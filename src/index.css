@@ -1,6 +1,6 @@
 body {
     background: rgb(2,246,38);
-    background: linear-gradient(0deg, rgba(2,246,38,1) 0%, rgba(0,5,1,1) 100%);
+    background: linear-gradient(0deg, rgba(2,246,38,1) 0%, rgb(2, 84, 18) 100%);
     min-height: 100vh;
     font-family: 'Roboto', sans-serif;
 }

@@ -1,0 +1,18 @@
+.wrapper {
+    position: relative;
+    .name {
+        margin-right: 15px;
+        cursor: pointer;
+        
+        &:hover {
+            color: rgba($color: #ffffff, $alpha: 1.0);
+        }
+    }
+    .avatar {
+        position: absolute;
+        top: 0;
+        z-index: 10;
+        border-radius: 25px;
+        max-width: 100px;
+    }
+}

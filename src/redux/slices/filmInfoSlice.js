@@ -12,6 +12,8 @@ const initialState = {
     budgetIsOpen: false,
     images: [],
     actors: [],
+    isShowingActor: false,
+    choisenActor: ''
 
 }
 
@@ -48,8 +50,15 @@ export const filmInfoSlice = createSlice({
       state.images = action.payload.splice(5).map(e => e.imageUrl)
     },
     setActors: (state, action) => {
-      state.actors = action.payload.splice(0,8).map(e => e.nameRu)
+      state.actors = action.payload.splice(0,8)
+    },
+    setIsShowingActor: (state, action) => {
+      state.isShowingActor = action.payload
+    },
+    setChoisenActor: (state, action) => {
+      state.choisenActor = action.payload
     }
+    
   },
 })
 
@@ -63,6 +72,8 @@ export const {
   setBudgetIsOpen, 
   setVideoIsOpen, 
   setImages,
-  setActors } = filmInfoSlice.actions
+  setActors,
+  setIsShowingActor,
+  setChoisenActor} = filmInfoSlice.actions
 
 export default filmInfoSlice.reducer
