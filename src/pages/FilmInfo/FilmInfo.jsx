@@ -1,11 +1,14 @@
 import axios from 'axios'
 import React, { useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
-import { setActors, setBudget, setBudgetIsOpen, setFilmObj, setImages, setIsShowingActor, setPosterUrl, setVideo, setVideoIsOpen } from '../../redux/slices/filmInfoSlice'
+import { setActors, setBudget, setBudgetIsOpen, setFilmObj, setImages, setIsFavorite, setPosterUrl, setVideo, setVideoIsOpen } from '../../redux/slices/filmInfoSlice'
 import { apiKey } from '../../App'
 import styles from './FilmInfo.module.scss'
 import ReactPlayer from 'react-player'
 import Actor from '../../components/Actor/Actor'
+import { Fab } from '@mui/material'
+import FavoriteIcon from '@mui/icons-material/Favorite'
+import { removeBestFilms, setBestFilms } from '../../redux/slices/bestSlice'
 
 const FilmInfo = () => {
   const choiseFilm = useSelector(state => state.catalogReducer.choiseFilm)
@@ -16,10 +19,13 @@ const FilmInfo = () => {
   const budgetIsOpen = useSelector(state => state.filmInfoReducer.budgetIsOpen)
   const images = useSelector(state => state.filmInfoReducer.images)
   const actors = useSelector(state => state.filmInfoReducer.actors)
+  const isFavorite = useSelector(state => state.filmInfoReducer.isFavorite)
+  const bestFilms = useSelector(state => state.bestFilmsReducer.bestFilms)
 
   const video = useSelector(state => state.filmInfoReducer.video)
 
   console.log(filmObj)
+  console.log(bestFilms)
   const dispatch = useDispatch()
 
   useEffect(() => {
@@ -108,8 +114,22 @@ const FilmInfo = () => {
           </div>
        
         <div className={styles.infoBlock}>
-            <h1>{filmObj.nameRu}</h1>
-            {/* {isShowingActor && <img src={e.posterUrl} alt=''></img>} */}
+            <div>
+              <h1>{filmObj.nameRu}</h1>
+              <Fab 
+              color={bestFilms.find(e=>e.kinopoiskId===filmObj.kinopoiskId)?'error':''} 
+              aria-label="like"
+              onClick={() => {  
+                  if(bestFilms.find(e=>e.kinopoiskId===filmObj.kinopoiskId)) {
+                    dispatch(removeBestFilms(filmObj))
+                  } else {
+                    dispatch(setBestFilms(filmObj))
+                  }          
+              }}>
+                <FavoriteIcon />
+              </Fab>
+            </div>
+
           <ul className={styles.info}>
             <li className={styles.infoItem}><span className={styles.brightText}>Год производства:</span>{filmObj.year}</li>
             <li className={styles.infoItem}><span className={styles.brightText}>Рейтинг кинопоиска:</span>{filmObj.ratingKinopoisk}</li>

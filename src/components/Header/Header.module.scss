@@ -28,9 +28,11 @@
             font-size: 20px;
             font-weight: 300;
             a:focus {
-                color: rgb(255, 252, 252);
+                border-bottom: 3px solid black;
             }
+
         }
+
         .navItem:not(:last-child) {
             margin-right: 20px;
         }

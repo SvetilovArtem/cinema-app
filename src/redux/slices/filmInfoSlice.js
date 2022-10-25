@@ -13,7 +13,8 @@ const initialState = {
     images: [],
     actors: [],
     isShowingActor: false,
-    choisenActor: ''
+    choisenActor: '',
+    isFavorite: false,
 
 }
 
@@ -57,7 +58,10 @@ export const filmInfoSlice = createSlice({
     },
     setChoisenActor: (state, action) => {
       state.choisenActor = action.payload
-    }
+    },
+    setIsFavorite: (state, action) => {
+      state.isFavorite = action.payload
+    },
     
   },
 })
@@ -74,6 +78,7 @@ export const {
   setImages,
   setActors,
   setIsShowingActor,
-  setChoisenActor} = filmInfoSlice.actions
+  setChoisenActor,
+  setIsFavorite} = filmInfoSlice.actions
 
 export default filmInfoSlice.reducer

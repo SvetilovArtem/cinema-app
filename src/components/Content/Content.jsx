@@ -1,6 +1,7 @@
 import React from 'react'
 import {Routes, Route} from 'react-router-dom'
 import Auth from '../../pages/Auth/Auth'
+import Best from '../../pages/Best/Best'
 import Catalog from '../../pages/Catalog/Catalog'
 import FilmInfo from '../../pages/FilmInfo/FilmInfo'
 import Main from '../../pages/Main/Main'
@@ -16,6 +17,7 @@ const Content = () => {
         <Route path={'/auth'} element={<Auth />} />
         <Route path={'/catalog'} element={<Catalog />} />
         <Route path={'/filmInfo'} element={<FilmInfo />} />
+        <Route path={'/best'} element={<Best />} />
       </Routes>
     </div>
     

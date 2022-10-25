@@ -17,7 +17,7 @@ const monthes = [
 
 const initialState = {
     yearPremiere: new Date().getFullYear(),
-    monthPremiere: monthes.filter(e => e.id === new Date().getMonth())[0].name,
+    monthPremiere: monthes.filter(e => e.id === new Date().getMonth() + 1)[0].name,
     premieres: []
 }
 

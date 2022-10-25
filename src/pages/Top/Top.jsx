@@ -11,11 +11,7 @@ const Top = () => {
     const [pagesCount, setPagesCount] = useState(0)
     const [isLoading, setIsLoading] = useState(false)
 
-    const [select, setSelect] = useState('')
-    console.log(pagesCount)
-    console.log(cinemas)
-    console.log(select)
-    
+    const [select, setSelect] = useState('')    
 
     useEffect(() => {
         setIsLoading(true)

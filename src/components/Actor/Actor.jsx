@@ -8,7 +8,6 @@ const Actor = ({name, poster}) => {
     const choisenActor = useSelector(state => state.filmInfoReducer.choisenActor)
     const dispatch = useDispatch()
 
-    console.log(choisenActor)
   return (
     <div className={styles.wrapper}> 
         <span 
