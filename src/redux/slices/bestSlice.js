@@ -28,7 +28,8 @@ export const bestSlice = createSlice({
     },
     removeViewed: (state, action) => {
       state.viewed = state.viewed.filter(obj => obj.kinopoiskId !== action.payload.kinopoiskId)
-    }
+    },
+    
   },
 })
 
