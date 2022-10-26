@@ -1,12 +1,25 @@
 import React from 'react'
 import { useSelector } from 'react-redux'
+import styles from './Best.module.scss'
+import BestFilmItem from './BestFilmItem/BestFilmItem'
 
 const Best = () => {
     const bestFilms = useSelector(state => state.bestFilmsReducer.bestFilms)
+
+
   return (
-    <ul>
+    <ul className={styles.bestList}>
         {
-            bestFilms.map(film => <li>{film.nameRu}</li>)
+            bestFilms.length ? 
+            bestFilms.map(film => {
+            return (
+              <BestFilmItem film={film} />
+            )}) 
+            : 
+            <span>
+              <span className={styles.text}>Нет избранных </span>
+              <span className={styles.smile}>&#128532;</span>
+            </span>
         }
     </ul>
   )

@@ -1,0 +1,15 @@
+.bestList {
+    background-color: rgba($color: #d1ffde, $alpha: 1.0);
+    width: 50%;
+    margin: 0 auto;
+    padding: 30px 80px;
+
+    .smile {
+        display: inline-block;
+        transform: scale(4);
+    }
+    .text {
+        margin-right: 30px;
+        font-size: 24px;
+    }
+}
