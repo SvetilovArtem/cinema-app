@@ -1,0 +1,41 @@
+form {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    .textarea {
+        border: none;
+        outline: none;
+        background: rgba($color: #ffffff, $alpha: 0.4);
+        border: 1px solid black;
+        border-radius: 20px;
+        padding: 10px;
+        margin-right: 20px;
+        margin-bottom: 20px;
+        width: 50%;
+        min-height: 80px;
+             
+        &::placeholder {
+            color: #000000;
+            font-size: 16px;
+        }
+        &:focus {
+            outline: 8px solid rgba(#0d6efd, 0.5);
+        }
+    }
+    .button {
+        color: #000000;
+        border: none;
+        outline: none;
+        background: rgba($color: #06ed2c, $alpha: 0.4);
+        border: 1px solid black;
+        border-radius: 20px;
+        padding: 10px 20px;
+        margin-bottom: 20px;
+        transition: all .2s ease;
+        font-size: 20px;
+        cursor: pointer;
+        &:hover {
+            background: rgba($color: #ffffff, $alpha: 1);  
+        }
+    }
+}

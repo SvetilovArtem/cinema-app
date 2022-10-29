@@ -9,7 +9,7 @@ const CardItem = ({name, year, poster, filmId, rating, yearRel}) => {
   const dispatch = useDispatch()
 
   return (
-    <NavLink to={'/filmInfo'}>
+    <NavLink to={`/filmInfo`}>
         <div className={styles.wrapper}>
             <div className={styles.cardHeader}>
               <h3 className={styles.title}>{name}</h3 >
@@ -28,7 +28,7 @@ const CardItem = ({name, year, poster, filmId, rating, yearRel}) => {
             />
             <p className={styles.year}>{year}</p>
             <p className={styles.year}>{yearRel && `Дата релиза: ${yearRel}`}</p>
-            {filmId}
+            
         </div>
     </NavLink>
     

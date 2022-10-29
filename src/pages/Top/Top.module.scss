@@ -3,13 +3,9 @@
     flex-wrap: wrap;
     gap: 30px;
     .filmsItem {
-        flex: 1 1 18%;
+        width: 18%;
         transition: all .3s ease;
         height: 100%;
-        &:hover {
-            transform: translateY(-12px);
-            box-shadow: 0 17px 9px -9px rgba(0, 0, 0, .5);
-        }
     }
 }
 .title {

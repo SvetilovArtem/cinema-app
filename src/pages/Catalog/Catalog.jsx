@@ -30,6 +30,10 @@ const Catalog = () => {
 
   const [isLoading, setIsLoading] = useState(false)
 
+  const [page, setPage] = useState(1)
+  const [pagesCount, setPagesCount] = useState(0)
+
+
   useEffect(() => {
     axios
     .get(`https://kinopoiskapiunofficial.tech/api/v2.2/films/filters`, {
@@ -69,15 +73,35 @@ const Catalog = () => {
     setRatingTo(e.currentTarget.value)
   }
 
+  // useEffect(() => {
+  //   const genreId = genresArr.filter(e => e.genre === genre)[0].id 
+  //   const countriesId = countriesArr.filter(e => e.country.toLowerCase() === country.toLowerCase())[0].id
+  //   axios
+  //   .get(`https://kinopoiskapiunofficial.tech/api/v2.2/films?${(genreId !== 25) ? `genres=${genreId}` : ''}${(countriesId !== 54) ? `&countries=${countriesId}` : ''}${yearFrom && `&yearFrom=${yearFrom}`}${ratingFrom && `&ratingFrom=${ratingFrom}`}${ratingTo && `&ratingTo=${ratingTo}`}${value && `&keyword=${value}`}${yearTo && `&yearTo=${yearTo}&page=${page}`}`, {
+  //       method: 'GET',
+  //       headers: {
+  //           'X-API-KEY': `${apiKey}`,
+  //           'Content-Type': 'application/json',
+  //       },
+  //   })
+  //   .then(resp => {
+  //     setFilmsAfterFilters(resp.data.items)
+  //     setIsLoading(false)
+  //     console.log(resp)
+  //     setPagesCount(resp.data.totalPages)
+  //   })
+  // }, [countriesArr, country, genre, genresArr, page, ratingFrom, ratingTo, setPage, value, yearFrom, yearTo])
+
 
 
   function onSearchWithFilters() {
+
     const genreId = genresArr.filter(e => e.genre === genre)[0].id 
     const countriesId = countriesArr.filter(e => e.country.toLowerCase() === country.toLowerCase())[0].id
 
     setIsLoading(true)
     axios
-    .get(`https://kinopoiskapiunofficial.tech/api/v2.2/films?${(genreId !== 25) ? `genres=${genreId}` : ''}${(countriesId !== 54) ? `&countries=${countriesId}` : ''}${yearFrom && `&yearFrom=${yearFrom}`}${ratingFrom && `&ratingFrom=${ratingFrom}`}${ratingTo && `&ratingTo=${ratingTo}`}${value && `&keyword=${value}`}${yearTo && `&yearTo=${yearTo}&page=${1}`}`, {
+    .get(`https://kinopoiskapiunofficial.tech/api/v2.2/films?${(genreId !== 25) ? `genres=${genreId}` : ''}${(countriesId !== 54) ? `&countries=${countriesId}` : ''}${yearFrom && `&yearFrom=${yearFrom}`}${ratingFrom && `&ratingFrom=${ratingFrom}`}${ratingTo && `&ratingTo=${ratingTo}`}${value && `&keyword=${value}`}${yearTo && `&yearTo=${yearTo}&page=${page}`}`, {
         method: 'GET',
         headers: {
             'X-API-KEY': `${apiKey}`,
@@ -87,6 +111,8 @@ const Catalog = () => {
     .then(resp => {
       setFilmsAfterFilters(resp.data.items)
       setIsLoading(false)
+      console.log(resp)
+      setPagesCount(resp.data.totalPages)
     })
   }
 
@@ -146,6 +172,12 @@ const Catalog = () => {
         </li>
         })}
       </ul>
+
+      <div className={styles.activePage} style={{color: 'black'}}>{page + '/' + pagesCount}</div>
+      <div className={styles.btnGroup}>
+          <button className={styles.paginateBtn+' '+styles.arrowBtn} style={{color: 'black'}} onClick={() => setPage(page - 1)} disabled={page < 2 ? true : false}>&#11164;</button>
+          <button className={styles.paginateBtn+' '+styles.arrowBtn} style={{color: 'black'}} onClick={() => setPage(page + 1)} disabled={page === pagesCount ? true : false}>&#11166;</button>
+      </div>
     </div>
   )
 }

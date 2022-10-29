@@ -2,6 +2,8 @@ import React from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { removeBestFilms, removeViewed, setViewed } from '../../../redux/slices/bestSlice'
 import styles from './BestFilmItem.module.scss'
+import IconButton from '@mui/material/IconButton'
+import DeleteIcon from '@mui/icons-material/Delete'
 
 const BestFilmItem = ({ film }) => {
     const viewed = useSelector(state => state.bestFilmsReducer.viewed)
@@ -23,10 +25,9 @@ const BestFilmItem = ({ film }) => {
             <span className={styles.name} onClick={() => {onViewed(film)}}>{film.nameRu}</span>
         </span>
         { viewed.find(obj => obj.kinopoiskId === film.kinopoiskId) ? <span className={styles.viewed}> просмотрено</span> : ''}
-        <span 
-        className={styles.deleteBtn} 
-        onClick={()=>{dispatch(removeBestFilms(film))}}>
-        	&#10060;</span>
+        <IconButton aria-label="delete" onClick={()=>{dispatch(removeBestFilms(film))}}>
+            <DeleteIcon />
+        </IconButton>
     </li>
   )
 }

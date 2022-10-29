@@ -9,6 +9,8 @@ import Actor from '../../components/Actor/Actor'
 import { Fab } from '@mui/material'
 import FavoriteIcon from '@mui/icons-material/Favorite'
 import { removeBestFilms, setBestFilms } from '../../redux/slices/bestSlice'
+import Comments from './Comments/Comments'
+import { setAboutFilm } from '../../redux/slices/commentsSlice'
 
 const FilmInfo = () => {
   const choiseFilm = useSelector(state => state.catalogReducer.choiseFilm)
@@ -19,13 +21,10 @@ const FilmInfo = () => {
   const budgetIsOpen = useSelector(state => state.filmInfoReducer.budgetIsOpen)
   const images = useSelector(state => state.filmInfoReducer.images)
   const actors = useSelector(state => state.filmInfoReducer.actors)
-  const isFavorite = useSelector(state => state.filmInfoReducer.isFavorite)
   const bestFilms = useSelector(state => state.bestFilmsReducer.bestFilms)
 
   const video = useSelector(state => state.filmInfoReducer.video)
 
-  console.log(filmObj)
-  console.log(bestFilms)
   const dispatch = useDispatch()
 
   useEffect(() => {
@@ -41,6 +40,7 @@ const FilmInfo = () => {
     .then(resp => {
       dispatch(setPosterUrl(resp.data.posterUrl))
       dispatch(setFilmObj(resp.data))
+      dispatch(setAboutFilm(resp.data))
     })
     axios
     .get(`https://kinopoiskapiunofficial.tech/api/v2.2/films/${choiseFilm}/videos`, {
@@ -95,7 +95,7 @@ const FilmInfo = () => {
 
 
   return (
-    filmObj &&
+    filmObj.kinopoiskId &&
       <div className={styles.wrapper} >
           <div className={styles.media}> 
             <img src={posterUrl} alt='' className={styles.poster} />
@@ -114,7 +114,7 @@ const FilmInfo = () => {
           </div>
        
         <div className={styles.infoBlock}>
-            <div>
+            <div className={styles.header}>
               <h1>{filmObj.nameRu}</h1>
               <Fab 
               color={bestFilms.find(e=>e.kinopoiskId===filmObj.kinopoiskId)?'error':''} 
@@ -147,11 +147,9 @@ const FilmInfo = () => {
               return <li className={styles.imageItem}>
               <img src={e} alt="" />
             </li>
-            })}
-            
-            
+            })} 
           </ul>
-          
+          <Comments />
         </div>
       
       </div>
