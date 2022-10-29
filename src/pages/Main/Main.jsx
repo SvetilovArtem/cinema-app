@@ -37,12 +37,21 @@ const Main = () => {
 
   return (
     <div className={styles.main}>
-        <h2 className={styles.title}>Премьеры</h2>
-        {
-            isLoading ? <Spinner animation="border" variant="danger" /> 
-            : 
-            <PremiereCarousel premieres={premieres} />
-        }
+        <div className={styles.leftBlock}>
+            <h1>
+                Хочешь посмотреть интересное кино ничего не можешь найти?
+            </h1>
+            <p>Заходи в наше кастомное приложение и узнавай новое из мира кино!</p>
+        </div>
+        <div className={styles.rightBlock}>
+            <h2 className={styles.title}>Премьеры</h2>
+            {
+                isLoading ? <Spinner animation="border" variant="danger" /> 
+                : 
+                <PremiereCarousel premieres={premieres} />
+            }
+        </div>
+        
         
     </div>   
   )

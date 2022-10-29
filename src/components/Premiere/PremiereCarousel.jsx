@@ -26,7 +26,7 @@ const PremiereCarousel = ({premieres}) => {
               <img
                 className="d-block w-100"
                 src={e.posterUrlPreview}
-                alt="First slide"
+                alt="slide"
                 onClick={() => dispatch(setChoiseFilm(e.kinopoiskId))}
               />
             </NavLink>    

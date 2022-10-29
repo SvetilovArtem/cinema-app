@@ -2,8 +2,10 @@
     display: flex;
     justify-content: center;
     .wrapper {
-        width: 640px;
-    
+        width: 400px;
+        img {
+            width: 100%;
+        }
     }
 }
 .carouselText {
