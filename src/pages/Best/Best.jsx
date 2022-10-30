@@ -8,6 +8,8 @@ const Best = () => {
 
 
   return (
+    <>
+    <h2>Избранные</h2>
     <ul className={styles.bestList}>
         {
             bestFilms.length ? 
@@ -22,6 +24,8 @@ const Best = () => {
             </span>
         }
     </ul>
+    </>
+    
   )
 }
 
