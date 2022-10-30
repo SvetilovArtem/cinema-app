@@ -2,10 +2,74 @@
 .main {
     display: flex;
     justify-content: center;
+    position: relative;
+    background: url('../../../public/img/bg1.png');
+    background-repeat: no-repeat;
+    background-size: contain;
 
     .leftBlock {
-        width: 40%;
+        width: 60%;
         padding: 50px;
+        display: flex;
+        flex-direction: column;
+        align-items: flex-start;
+
+        h1 {
+            font-size: 60px;
+            font-weight: 700;
+            color: rgba($color: #000000, $alpha: 1.0);
+            text-shadow: 
+            -0   -1px 0   #000000,
+            0   -1px 0   #000000,
+            -0    1px 0   #000000,
+            0    1px 0   #000000,
+            -1px -0   0   #000000,
+            1px -0   0   #000000,
+            -1px  0   0   #000000,
+            1px  0   0   #000000,
+            -1px -1px 0   #000000,
+            1px -1px 0   #000000,
+            -1px  1px 0   #000000,
+            1px  1px 0   #000000,
+            -1px -1px 0   #000000,
+            1px -1px 0   #000000,
+            -1px  1px 0   #000000,
+            1px  1px 0   #000000;
+
+        }
+        p {
+            font-size: 24px;
+            font-weight: 500;
+            color: #000000;
+            margin-bottom: 30px;
+        }
+        .button {
+            color: #000000;
+            border: none;
+            outline: none;
+            background: rgba($color: #06ed2c, $alpha: 0.2);
+            border: 1px solid black;
+            border-radius: 20px;
+            padding: 10px 50px 10px 40px;
+            margin-bottom: 20px;
+            transition: all .2s ease;
+            font-size: 30px;
+            font-weight: 700;
+            cursor: pointer;
+            position: relative;
+            &:hover {
+                background: rgba($color: #06ed2c, $alpha: 0.5);  
+            }
+            .arrowBtn {
+                position: absolute;
+                right: 15px;
+                transition: right .2s ease;
+            }
+            &:hover .arrowBtn {
+                right: 3px;
+
+            }
+        }
     }
     
     .title {

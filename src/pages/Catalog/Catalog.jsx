@@ -172,12 +172,6 @@ const Catalog = () => {
         </li>
         })}
       </ul>
-
-      <div className={styles.activePage} style={{color: 'black'}}>{page + '/' + pagesCount}</div>
-      <div className={styles.btnGroup}>
-          <button className={styles.paginateBtn+' '+styles.arrowBtn} style={{color: 'black'}} onClick={() => setPage(page - 1)} disabled={page < 2 ? true : false}>&#11164;</button>
-          <button className={styles.paginateBtn+' '+styles.arrowBtn} style={{color: 'black'}} onClick={() => setPage(page + 1)} disabled={page === pagesCount ? true : false}>&#11166;</button>
-      </div>
     </div>
   )
 }

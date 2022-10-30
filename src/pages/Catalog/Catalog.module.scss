@@ -84,10 +84,6 @@
             width: 18%;
             height: 100%;
             transition: all .3s ease;
-            &:hover {
-                transform: translateY(-12px);
-                box-shadow: 0 17px 9px -9px rgba(0, 0, 0, .5);
-            }
         }
     }
     .filters {

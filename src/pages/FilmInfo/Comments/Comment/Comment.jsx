@@ -10,9 +10,11 @@ const Comment = ({comment}) => {
       <div className={styles.userBlock}>
         <img src={'img/user.png'} alt='' />
         <span>User</span>
+        <span>{comment.date}</span>
       </div>
       
       <span className={styles.text}>{comment.comment}</span>
+      
     </div>
   )
 }

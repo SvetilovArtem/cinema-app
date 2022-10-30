@@ -26,7 +26,7 @@ export const mainSlice = createSlice({
   initialState,
   reducers: {
     setPremieres: (state, action) => {
-      state.premieres = action.payload.splice(0, 10)
+      state.premieres = action.payload.splice(0, 15)
     }
   },
 })
